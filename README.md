@@ -1,6 +1,6 @@
-# Descubriendo el caribe - Pagina de tours (ventas proximamente)
+# Sistema para centros deportivos (Gym, cross, Karate), (en construccion)
 
-> tours cancun los mejores
+> Para gestionar datos de la empresa (miembros, pagos, notificaciones, etc) 
 
 ## Build Setup
 
