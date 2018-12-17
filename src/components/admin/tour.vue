@@ -4,7 +4,7 @@
       <v-spacer></v-spacer>
       <v-btn color="primary" dark @click="addTour">Agregar</v-btn>
     </v-layout>
-    <v-layout justify-center >
+    <v-layout row wrap >
       <v-card >
         <v-card-title>
           <h3>Listado de tours</h3>
