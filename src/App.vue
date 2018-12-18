@@ -98,6 +98,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex';
   import firebase from "firebase";
   export default {
     name: "App",
@@ -134,7 +135,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: "Descubriendo el caribe",
+        title: "Sporting system",
         auth:false
       };
     },
@@ -181,6 +182,7 @@
       var vm = this;
       vm.OnAuth();
       console.log(this.$store.state.count);
+      console.log("mapState",mapState);
     }
   };
 
