@@ -27,17 +27,11 @@ router.beforeEach((to, from, next) => {
   // const currentUser = firebase.auth().currentUser;
   var uid = localStorage.getItem("Uid")
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  // console.log(currentUser,requiresAuth,to,from);
-  // console.log(from);
-  // console.log(requiresAuth, uid);
   if (requiresAuth && uid !== null) {
-    // console.log("entro aqui 2", uid, requiresAuth);
       next();
   } else if (requiresAuth == true && uid == null && to.path == '/admin') {
-      // console.log("1", from)
       next('/login');
   }else{
-    // console.log("else vue route", to.path);
     next();
   }
 });

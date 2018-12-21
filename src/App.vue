@@ -46,7 +46,7 @@
               <v-icon right dark>{{tab.icon}}</v-icon>
             </v-btn>
             <template v-if="auth">
-              <v-btn  flat to="/admin">
+              <v-btn flat to="/admin">
                 <!-- <div class="font-weight-thin">Config</div> -->
                 <v-icon dark>settings</v-icon>
               </v-btn>
@@ -55,16 +55,12 @@
                 <v-icon dark>power_settings_new</v-icon>
               </v-btn>
             </template>
-            <v-btn  flat @click="changeLang('en')">
+            <!-- <v-btn  flat @click="changeLang('en')">
               <img width="30" height="30" src="/static/img/united-states.png" alt="Cambia a ingles">
-              <!-- <div class="font-weight-thin">Config</div> -->
-              <!-- <v-icon  dark>power_settings_new</v-icon> -->
-              <!-- <v-icon right dark @click="lang('en')"><img src="static/img/mexico.png" alt="Cambia a espa�ol"></v-icon> -->
-              <!-- <v-icon right dark @click="lang('es')"><img src="static/img/united_states.png" alt="Cambia a ingles"></v-icon> -->
             </v-btn>
             <v-btn  flat @click="changeLang('es')">
               <img width="30" height="30" src="/static/img/mexico.png" alt="Cambia a espa�ol">
-            </v-btn>
+            </v-btn> -->
           </v-toolbar-items>
         </v-toolbar>
       </div>
@@ -80,16 +76,16 @@
     </v-content>
     <v-footer dark height="auto">
       <v-card class="flex" flat tile>
-        <v-card-title class="info">
+        <!-- <v-card-title class="info">
           <strong class="subheading">Mantente conectado con nuestras redes sociales!</strong>
           <v-spacer></v-spacer>
           <v-btn v-for="icon in icons" :key="icon" class="mx-3" dark icon>
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn>
-        </v-card-title>
+        </v-card-title> -->
         <v-card-actions class="grey darken-3 justify-center">
           &copy;2018 —
-          <strong>{{title}} {{lang}}</strong>
+          <strong> {{title}}</strong>
         </v-card-actions>
       </v-card>
     </v-footer>
@@ -116,21 +112,22 @@
           "fab fa-linkedin",
           "fab fa-instagram"
         ],
-        tabs: [{
-            url: "/",
-            title: "Tours",
-            icon: "directions_bus"
-          },
-          {
-            url: "/hotels",
-            title: "Hotels",
-            icon: "domain"
-          },
-          {
-            url: "/contacto",
-            title: "Contacto",
-            icon: "person"
-          },
+        tabs: [
+          // {
+          //   url: "/",
+          //   title: "Tours",
+          //   icon: "directions_bus"
+          // },
+          // {
+          //   url: "/hotels",
+          //   title: "Hotels",
+          //   icon: "domain"
+          // },
+          // {
+          //   url: "/contacto",
+          //   title: "Contacto",
+          //   icon: "person"
+          // },
         ],
         miniVariant: false,
         right: true,
@@ -182,7 +179,7 @@
       var vm = this;
       vm.OnAuth();
       console.log(this.$store.state.count);
-      console.log("mapState",mapState);
+      console.log("mapState ",mapState);
     }
   };
 
