@@ -5,14 +5,14 @@
         <v-card>
           <v-toolbar flat color="white">
             <v-toolbar-title>
-              <h3 class="display-2">Miembros</h3>
+              <h3 class="display-1">Miembros</h3>
             </v-toolbar-title>
             <v-divider class="mx-3" inset vertical></v-divider>
             <div class="subheading">Administra a tus clientes de forma rapida</div>
             <v-spacer></v-spacer>
             <v-btn color="primary" dark @click="addTour">Agregar</v-btn>
           </v-toolbar>
-          <v-toolbar flat>
+          <v-toolbar flat color="white">
             <v-flex sm12>
               <v-text-field v-model="search" append-icon="search" label="Buscar" class="flex"></v-text-field>
             </v-flex>
@@ -231,7 +231,7 @@ export default {
         //   value: "homephone"
         // },
         // {
-        //   text: "Dirección",
+        //   text: "Direcciï¿½n",
         //   value: "address"
         // },
         {
