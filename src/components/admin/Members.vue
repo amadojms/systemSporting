@@ -63,14 +63,14 @@
             <v-btn icon dark @click.native="dialog = false">
               <v-icon>close</v-icon>
             </v-btn>
-            <v-toolbar-title v-if="tourSelected.$key && tourSelected.$key.length> 0">Edita un tour</v-toolbar-title>
+            <v-toolbar-title v-if="memberSelected.$key && memberSelected.$key.length> 0">Edita un tour</v-toolbar-title>
             <v-toolbar-title v-else>Agrega un tour</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
               <v-btn
                 dark
                 flat
-                v-if="tourSelected.$key && tourSelected.$key.length > 0"
+                v-if="memberSelected.$key && memberSelected.$key.length > 0"
                 :disabled="!valid"
                 @click="saveTour"
               >Editar</v-btn>
@@ -85,21 +85,21 @@
           <v-card-text>
             <v-form v-model="valid">
               <v-text-field
-                v-model="tourSelected.tour"
+                v-model="memberSelected.tour"
                 :rules="nameRules"
                 :counter="50"
-                label="Nombre del tour"
+                label="Nombre"
                 required
               ></v-text-field>
               <v-text-field
-                v-model="tourSelected.description"
+                v-model="memberSelected.description"
                 :rules="descripcionRules"
                 :counter="50"
-                label="Descripcion"
+                label="Apellido"
                 required
               ></v-text-field>
               <v-text-field
-                v-model="tourSelected.description_en"
+                v-model="memberSelected.description_en"
                 :rules="incluyeRules"
                 :counter="50"
                 label="Descripcion en ingles"
@@ -107,20 +107,20 @@
               ></v-text-field>
               <!-- <v-select
                 :items="places"
-                v-model="tourSelected.placeid"
+                v-model="memberSelected.placeid"
                 item-value="$key"
                 item-text="place"
                 label="Selecciona lugar"
                 single-line
               ></v-select> -->
-              <v-radio-group v-model="tourSelected.service">
+              <v-radio-group v-model="memberSelected.service">
                 <v-radio label="Hotel" value="hotel"></v-radio>
                 <v-radio label="Tour" value="tour"></v-radio>
               </v-radio-group>
               <v-flex class="text-md-center">
                 <img
                   class="size"
-                  :src="tourSelected.image && tourSelected.image.length > 0 ? tourSelected.image : '/static/img/producto_sin_imagen.png'"
+                  :src="memberSelected.image && memberSelected.image.length > 0 ? memberSelected.image : '/static/img/producto_sin_imagen.png'"
                   alt="Foto subida"
                 >
               </v-flex>
@@ -137,7 +137,7 @@
               <v-flex>
                 <p>Contenido en español</p>
                 <quill-editor
-                  v-model="tourSelected.content"
+                  v-model="memberSelected.content"
                   ref="myQuillEditor"
                   :options="editorOption"
                   @blur="onEditorBlur($event)"
@@ -148,7 +148,7 @@
               <v-flex>
                 <p>Contenido en ingles</p>
                 <quill-editor
-                  v-model="tourSelected.content_en"
+                  v-model="memberSelected.content_en"
                   ref="myQuillEditor"
                   :options="editorOption"
                   @blur="onEditorBlur($event)"
@@ -177,7 +177,7 @@ export default {
     //   files: Object,
     //   fb: firebase.database(),
       members:[],
-      tourSelected: {},
+      memberSelected: {},
       nameRules: [
         // v => !!v || "Nombre es requerido",
         // v => v.length <= 50 || "No debe ser mayor a 50 caracteres"
@@ -312,29 +312,29 @@ export default {
       vm.image = files[0];
       vm.files = files;
     },
-    editTour(tour) {
+    editTour(member) {
       var vm = this;
       console.log(tour);
-      vm.tourSelected = tour;
+      vm.memberSelected = member;
       vm.dialog = true;
     },
     addTour() {
       var vm = this;
       vm.dialog = true;
-      vm.tourSelected = {};
+      vm.memberSelected = {};
     },
     saveTour() {
       var vm = this;
-      console.log("savetour", vm.tourSelected);
+      console.log("savetour", vm.memberSelected);
       vm.dialog = false;
     },
     createMember() {
       var vm = this;
     },
-    removeMember(tour) {
-      console.log(tour);
+    removeMember(member) {
+      console.log(member);
       var vm = this;
-      vm.tourSelected = tour;
+      vm.memberSelected = member;
       vm.$swal({
         title: "�Estas seguro?",
         text: "Si eliminar!",
@@ -346,12 +346,12 @@ export default {
       }).then(result => {
         if (result.value) {
           console.log("Eliminado");
-          vm.fb
-            .ref("/")
-            .child("tours")
-            .child(tour.$key)
-            .remove();
-          vm.$swal("Eliminado!", "Tour eliminado.", "success");
+          // vm.fb
+          //   .ref("/")
+          //   .child("tours")
+          //   .child(tour.$key)
+          //   .remove();
+          // vm.$swal("Eliminado!", "Tour eliminado.", "success");
           // vm.places.splice(place,1);
         }
       });
@@ -384,7 +384,7 @@ export default {
     onEditorChange({ quill, html, text }) {
       // console.log('editor change!', quill, html, text)
       var vm = this;
-      vm.tourSelected.content = html;
+      vm.memberSelected.content = html;
     }
   },
   mounted() {
