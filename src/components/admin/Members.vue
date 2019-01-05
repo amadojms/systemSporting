@@ -10,7 +10,7 @@
             <v-divider class="mx-3" inset vertical></v-divider>
             <div class="subheading">Administra a tus clientes de forma rapida</div>
             <v-spacer></v-spacer>
-            <v-btn color="primary" dark @click="addTour">Agregar</v-btn>
+            <v-btn color="primary" small dark @click="addTour">Agregar</v-btn>
           </v-toolbar>
           <v-toolbar flat color="white">
             <v-flex sm12>
@@ -24,18 +24,21 @@
               <td>{{ member.item.birthdate }}</td>
               <td>{{ member.item.cellphone }}</td>
               <td>
-                  <v-chip :color="member.item.status ? 'green' : 'red'" text-color="white">{{member.item.status ? 'Activo': 'Inactivo'}}</v-chip>
+                <v-chip
+                  :color="member.item.status ? 'green' : 'red'"
+                  text-color="white"
+                >{{member.item.status ? 'Activo': 'Inactivo'}}</v-chip>
               </td>
               <td>
-                  <img :src="member.item.picture" width="25" height="25">
+                <img :src="member.item.picture" width="25" height="25">
               </td>
               <td>{{ member.item.age }}</td>
               <td>
                 <!-- <v-btn small @click="editTour(member.item)"> -->
-                  <v-icon small color="orange" @click="editTour(member.item)">edit</v-icon>
+                <v-icon small color="orange" @click="editTour(member.item)">edit</v-icon>
                 <!-- </v-btn> -->
                 <!-- <v-btn small @click="removeMember(member.item)"> -->
-                  <v-icon small color="red" @click="removeMember(member.item)">delete</v-icon>
+                <v-icon small color="red" @click="removeMember(member.item)">delete</v-icon>
                 <!-- </v-btn>  -->
               </td>
               <!-- <td><v-btn @click="editTour(member.item)"> Edit</v-btn></td> -->
@@ -63,7 +66,9 @@
             <v-btn icon dark @click.native="dialog = false">
               <v-icon>close</v-icon>
             </v-btn>
-            <v-toolbar-title v-if="memberSelected.$key && memberSelected.$key.length> 0">Edita un tour</v-toolbar-title>
+            <v-toolbar-title
+              v-if="memberSelected.$key && memberSelected.$key.length> 0"
+            >Edita un tour</v-toolbar-title>
             <v-toolbar-title v-else>Agrega un tour</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -84,13 +89,16 @@
           </v-toolbar>
           <v-card-text>
             <v-form v-model="valid">
-              <v-text-field
-                v-model="memberSelected.tour"
-                :rules="nameRules"
-                :counter="50"
-                label="Nombre"
-                required
-              ></v-text-field>
+              <v-flex sm3 md3>
+                <v-text-field
+                  v-model="memberSelected.tour"
+                  :rules="nameRules"
+                  :counter="50"
+                  label="Nombre"
+                  required
+                ></v-text-field>
+              </v-flex>
+
               <v-text-field
                 v-model="memberSelected.description"
                 :rules="descripcionRules"
@@ -102,7 +110,7 @@
                 v-model="memberSelected.description_en"
                 :rules="incluyeRules"
                 :counter="50"
-                label="Descripcion en ingles"
+                label="Fecha de nacimiento"
                 required
               ></v-text-field>
               <!-- <v-select
@@ -112,7 +120,7 @@
                 item-text="place"
                 label="Selecciona lugar"
                 single-line
-              ></v-select> -->
+              ></v-select>-->
               <v-radio-group v-model="memberSelected.service">
                 <v-radio label="Hotel" value="hotel"></v-radio>
                 <v-radio label="Tour" value="tour"></v-radio>
@@ -172,11 +180,11 @@ export default {
       dialog: false,
       search: "",
       valid: false,
-    //   tours: [],
-    //   places: [],
-    //   files: Object,
-    //   fb: firebase.database(),
-      members:[],
+      //   tours: [],
+      //   places: [],
+      //   files: Object,
+      //   fb: firebase.database(),
+      members: [],
       memberSelected: {},
       nameRules: [
         // v => !!v || "Nombre es requerido",
@@ -366,7 +374,7 @@ export default {
         .get("https://crossappback.herokuapp.com/api/members", config)
         .then(response => {
           console.log(response);
-            vm.members = response.data.members;
+          vm.members = response.data.members;
         })
         .catch(e => {
           console.log(e);
