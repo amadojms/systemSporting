@@ -90,8 +90,8 @@
           <v-card-text>
             <v-form v-model="valid">
               <v-container fluid>
-                <v-layout>
-                  <v-flex xs6 sm4 md4>
+                <v-layout row wrap>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.tour"
                       :rules="nameRules"
@@ -101,7 +101,7 @@
                       solo
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.description"
                       :rules="descripcionRules"
@@ -125,7 +125,7 @@
                         slot="activator"
                         v-model="birthdate"
                         label="Fecha de nacimiento"
-                        prepend-icon="event"
+                        append-icon="event"
                         readonly
                         solo
                       ></v-text-field>
@@ -136,9 +136,7 @@
                       </v-date-picker>
                     </v-dialog>
                   </v-flex>
-                </v-layout>
-                <v-layout>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-radio-group v-model="memberSelected.service" row>
                       <div slot="label">
                         <strong>Genero</strong>
@@ -147,27 +145,27 @@
                       <v-radio label="Mujer" value="M"></v-radio>
                     </v-radio-group>
                   </v-flex>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.email"
                       :rules="incluyeRules"
                       label="Correo electronico"
                       required
                       solo
+                      append-icon="mail"
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.phone"
                       :rules="incluyeRules"
                       label="Celular"
                       required
                       solo
+                      append-icon="phone"
                     ></v-text-field>
                   </v-flex>
-                </v-layout>
-                <v-layout>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.address"
                       :rules="incluyeRules"
@@ -176,7 +174,7 @@
                       solo
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.address"
                       :rules="incluyeRules"
@@ -185,7 +183,7 @@
                       solo
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs6 sm4 md4>
+                  <v-flex xs6 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.address"
                       :rules="incluyeRules"
@@ -194,8 +192,6 @@
                       solo
                     ></v-text-field>
                   </v-flex>
-                </v-layout>
-                <v-layout>
                   <v-flex xs12 sm6 md4>
                     <v-dialog
                       ref="dialog"
@@ -210,7 +206,7 @@
                         slot="activator"
                         v-model="inscriptionDate"
                         label="Fecha de inscripcion"
-                        prepend-icon="event"
+                        append-icon="event"
                         readonly
                         solo
                       ></v-text-field>
@@ -221,7 +217,7 @@
                       </v-date-picker>
                     </v-dialog>
                   </v-flex>
-                  <v-flex>
+                  <v-flex xs12 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.address"
                       :rules="incluyeRules"
@@ -230,11 +226,49 @@
                       solo
                     ></v-text-field>
                   </v-flex>
-                  <v-flex>
+                  <v-flex xs12 sm6 md4>
                     <v-text-field
                       v-model="memberSelected.address"
                       :rules="incluyeRules"
-                      label="Ocupacion"
+                      label="Contacto de emergencia"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Relacion"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Correo electronico"
+                      required
+                      solo
+                      append-icon="mail"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Celular"
+                      required
+                      solo
+                      append-icon="phone"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Informacion medica (alergias etc...)"
                       required
                       solo
                     ></v-text-field>
