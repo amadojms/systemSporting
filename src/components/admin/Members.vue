@@ -89,30 +89,158 @@
           </v-toolbar>
           <v-card-text>
             <v-form v-model="valid">
-              <v-flex sm3 md3>
-                <v-text-field
-                  v-model="memberSelected.tour"
-                  :rules="nameRules"
-                  :counter="50"
-                  label="Nombre"
-                  required
-                ></v-text-field>
-              </v-flex>
-
-              <v-text-field
-                v-model="memberSelected.description"
-                :rules="descripcionRules"
-                :counter="50"
-                label="Apellido"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="memberSelected.description_en"
-                :rules="incluyeRules"
-                :counter="50"
-                label="Fecha de nacimiento"
-                required
-              ></v-text-field>
+              <v-container fluid>
+                <v-layout>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.tour"
+                      :rules="nameRules"
+                      :counter="50"
+                      label="Nombre"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.description"
+                      :rules="descripcionRules"
+                      :counter="50"
+                      label="Apellido"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-dialog
+                      ref="dialog"
+                      v-model="modal"
+                      :return-value.sync="date"
+                      persistent
+                      lazy
+                      full-width
+                      width="290px"
+                    >
+                      <v-text-field
+                        slot="activator"
+                        v-model="birthdate"
+                        label="Fecha de nacimiento"
+                        prepend-icon="event"
+                        readonly
+                        solo
+                      ></v-text-field>
+                      <v-date-picker v-model="date" scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn flat color="primary" @click="modal = false">Cancelar</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(date)">Aceptar</v-btn>
+                      </v-date-picker>
+                    </v-dialog>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs6 sm4 md4>
+                    <v-radio-group v-model="memberSelected.service" row>
+                      <div slot="label">
+                        <strong>Genero</strong>
+                      </div>
+                      <v-radio label="Hombre" value="H"></v-radio>
+                      <v-radio label="Mujer" value="M"></v-radio>
+                    </v-radio-group>
+                  </v-flex>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.email"
+                      :rules="incluyeRules"
+                      label="Correo electronico"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.phone"
+                      :rules="incluyeRules"
+                      label="Celular"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Estado"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Ciudad"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs6 sm4 md4>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Direccion"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs12 sm6 md4>
+                    <v-dialog
+                      ref="dialog"
+                      v-model="modal"
+                      :return-value.sync="date"
+                      persistent
+                      lazy
+                      full-width
+                      width="290px"
+                    >
+                      <v-text-field
+                        slot="activator"
+                        v-model="inscriptionDate"
+                        label="Fecha de inscripcion"
+                        prepend-icon="event"
+                        readonly
+                        solo
+                      ></v-text-field>
+                      <v-date-picker v-model="date" scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                      </v-date-picker>
+                    </v-dialog>
+                  </v-flex>
+                  <v-flex>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Referido por miembro"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex>
+                    <v-text-field
+                      v-model="memberSelected.address"
+                      :rules="incluyeRules"
+                      label="Ocupacion"
+                      required
+                      solo
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-container>
               <!-- <v-select
                 :items="places"
                 v-model="memberSelected.placeid"
@@ -121,10 +249,6 @@
                 label="Selecciona lugar"
                 single-line
               ></v-select>-->
-              <v-radio-group v-model="memberSelected.service">
-                <v-radio label="Hotel" value="hotel"></v-radio>
-                <v-radio label="Tour" value="tour"></v-radio>
-              </v-radio-group>
               <v-flex class="text-md-center">
                 <img
                   class="size"
@@ -180,6 +304,9 @@ export default {
       dialog: false,
       search: "",
       valid: false,
+      birthdate: new Date().toISOString().substr(0, 10),
+      inscriptionDate: new Date().toISOString().substr(0, 10),
+      modal: false,
       //   tours: [],
       //   places: [],
       //   files: Object,
