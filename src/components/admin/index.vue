@@ -52,7 +52,6 @@
   </v-app>
 </template>
 <script>
-import AdminHotel from "@/components/admin/hotel";
 import AdminMembers from "@/components/admin/Members";
 export default {
   data: () => ({
@@ -72,7 +71,6 @@ export default {
     ]
   }),
   components: {
-    "admin-hotel": AdminHotel,
     "admin-members": AdminMembers
     // 'c-tour': () => ctour
   },
