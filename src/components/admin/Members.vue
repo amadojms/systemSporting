@@ -115,7 +115,7 @@
                     <v-dialog
                       ref="dialog"
                       v-model="modal"
-                      :return-value.sync="birthdate"
+                      :return-value.sync="memberSelected.birthdate"
                       persistent
                       lazy
                       full-width
@@ -123,21 +123,21 @@
                     >
                       <v-text-field
                         slot="activator"
-                        v-model="birthdate"
+                        v-model="memberSelected.birthdate"
                         label="Fecha de nacimiento"
                         append-icon="event"
                         readonly
                         solo
                       ></v-text-field>
-                      <v-date-picker v-model="birthdate" scrollable>
+                      <v-date-picker v-model="memberSelected.birthdate" scrollable>
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="modal = false">Cancelar</v-btn>
-                        <v-btn flat color="primary" @click="$refs.dialog.save(birthdate)">Aceptar</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(memberSelected.birthdate)">Aceptar</v-btn>
                       </v-date-picker>
                     </v-dialog>
                   </v-flex>
                   <v-flex xs6 sm6 md4>
-                    <v-radio-group v-model="memberSelected.service" row>
+                    <v-radio-group v-model="memberSelected.sex" row>
                       <div slot="label">
                         <strong>Genero</strong>
                       </div>
@@ -157,7 +157,7 @@
                   </v-flex>
                   <v-flex xs6 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.phone"
+                      v-model="memberSelected.cellphone"
                       :rules="incluyeRules"
                       label="Celular"
                       required
@@ -283,7 +283,7 @@
                 label="Selecciona lugar"
                 single-line
               ></v-select>-->
-              <v-flex class="text-md-center">
+              <!-- <v-flex class="text-md-center">
                 <img
                   class="size"
                   :src="memberSelected.image && memberSelected.image.length > 0 ? memberSelected.image : '/static/img/producto_sin_imagen.png'"
@@ -321,7 +321,7 @@
                   @focus="onEditorFocus($event)"
                   @ready="onEditorReady($event)"
                 ></quill-editor>
-              </v-flex>
+              </v-flex> -->
             </v-form>
           </v-card-text>
         </v-card>
@@ -453,34 +453,34 @@ export default {
     };
   },
   computed: {
-    editor() {
-      return this.$refs.myQuillEditor.quill;
-    }
+    // editor() {
+    //   return this.$refs.myQuillEditor.quill;
+    // }
   },
   props: {
     source: String
   },
   methods: {
-    inputFileClick() {
-      var vm = this;
-      vm.$refs.inputFile.click();
-    },
-    fileChange(event) {
-      var vm = this;
-      const files = event.target.files;
-      let filename = files[0].name;
-      if (filename.lastIndexOf(".") <= 0) {
-        return vm.$swal("Porfavor agrega una imagen valida");
-      }
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        vm.imageUrl = fileReader.result;
-        console.log(vm.imageUrl);
-      });
-      fileReader.readAsDataURL(files[0]);
-      vm.image = files[0];
-      vm.files = files;
-    },
+    // inputFileClick() {
+    //   var vm = this;
+    //   vm.$refs.inputFile.click();
+    // },
+    // fileChange(event) {
+    //   var vm = this;
+    //   const files = event.target.files;
+    //   let filename = files[0].name;
+    //   if (filename.lastIndexOf(".") <= 0) {
+    //     return vm.$swal("Porfavor agrega una imagen valida");
+    //   }
+    //   const fileReader = new FileReader();
+    //   fileReader.addEventListener("load", () => {
+    //     vm.imageUrl = fileReader.result;
+    //     console.log(vm.imageUrl);
+    //   });
+    //   fileReader.readAsDataURL(files[0]);
+    //   vm.image = files[0];
+    //   vm.files = files;
+    // },
     editMember(member) {
       var vm = this;
       console.log(tour);
@@ -499,12 +499,12 @@ export default {
     },
     createMember() {
       var vm = this;
-      var vm = this;
+      console.log(vm.memberSelected);
       this.axios
-        .get("https://crossappback.herokuapp.com/api/members")
+        .post("https://crossappback.herokuapp.com/api/member", vm.memberSelected)
         .then(response => {
           console.log(response);
-          vm.members = response.data.members;
+          // vm.members = response.data.members;
         })
         .catch(e => {
           console.log(e);
@@ -547,20 +547,20 @@ export default {
           console.log(e);
         });
     },
-    onEditorBlur(quill) {
-      // console.log('editor blur!', quill)
-    },
-    onEditorFocus(quill) {
-      // console.log('editor focus!', quill)
-    },
-    onEditorReady(quill) {
-      // console.log('editor ready!', quill)
-    },
-    onEditorChange({ quill, html, text }) {
-      // console.log('editor change!', quill, html, text)
-      var vm = this;
-      vm.memberSelected.content = html;
-    }
+    // onEditorBlur(quill) {
+    //   // console.log('editor blur!', quill)
+    // },
+    // onEditorFocus(quill) {
+    //   // console.log('editor focus!', quill)
+    // },
+    // onEditorReady(quill) {
+    //   // console.log('editor ready!', quill)
+    // },
+    // onEditorChange({ quill, html, text }) {
+    //   // console.log('editor change!', quill, html, text)
+    //   var vm = this;
+    //   vm.memberSelected.content = html;
+    // }
   },
   mounted() {
     var vm = this;
