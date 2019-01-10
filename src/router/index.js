@@ -15,13 +15,13 @@ export default new Router({
   mode: 'history',
   routes: [
     
+    // {
+    //   path: '/',
+    //   // name: 'tours',
+    //   component: tours
+    // },
     {
       path: '/',
-      // name: 'tours',
-      component: tours
-    },
-    {
-      path: '/login',
       // name: 'tours',
       component: login
     },
