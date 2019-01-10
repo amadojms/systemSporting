@@ -141,8 +141,8 @@
                       <div slot="label">
                         <strong>Genero</strong>
                       </div>
-                      <v-radio label="Hombre" value="H"></v-radio>
-                      <v-radio label="Mujer" value="M"></v-radio>
+                      <v-radio label="Hombre" value="male"></v-radio>
+                      <v-radio label="Mujer" value="female"></v-radio>
                     </v-radio-group>
                   </v-flex>
                   <v-flex xs6 sm6 md4>
@@ -167,7 +167,7 @@
                   </v-flex>
                   <v-flex xs6 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.state"
                       :rules="incluyeRules"
                       label="Estado"
                       required
@@ -176,7 +176,7 @@
                   </v-flex>
                   <v-flex xs6 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.city"
                       :rules="incluyeRules"
                       label="Ciudad"
                       required
@@ -228,7 +228,7 @@
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.emergencyContact"
                       :rules="incluyeRules"
                       label="Contacto de emergencia"
                       required
@@ -237,7 +237,7 @@
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.relationship"
                       :rules="incluyeRules"
                       label="Relacion"
                       required
@@ -246,7 +246,7 @@
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.contactEmail"
                       :rules="incluyeRules"
                       label="Correo electronico"
                       required
@@ -256,7 +256,7 @@
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.contactCellPhone"
                       :rules="incluyeRules"
                       label="Celular"
                       required
@@ -266,7 +266,7 @@
                   </v-flex>
                   <v-flex xs12 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.address"
+                      v-model="memberSelected.medicalInformation"
                       :rules="incluyeRules"
                       label="Informacion medica (alergias etc...)"
                       required
@@ -483,7 +483,7 @@ export default {
     // },
     editMember(member) {
       var vm = this;
-      console.log(tour);
+      console.log(member);
       vm.memberSelected = member;
       vm.dialog = true;
     },
@@ -494,8 +494,16 @@ export default {
     },
     saveMember() {
       var vm = this;
-      console.log("saveMember", vm.memberSelected);
-      vm.dialog = false;
+      console.log(vm.memberSelected);
+      this.axios
+        .put("https://crossappback.herokuapp.com/api/member/", vm.memberSelected)
+        .then(response => {
+          console.log(response);
+          // vm.members = response.data.members;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
     createMember() {
       var vm = this;
