@@ -10,7 +10,7 @@
             <v-divider class="mx-3" inset vertical></v-divider>
             <div class="subheading">Administra a tus clientes de forma rapida</div>
             <v-spacer></v-spacer>
-            <v-btn color="primary" small dark @click="addTour">Agregar</v-btn>
+            <v-btn color="primary" small dark @click="addMember">Agregar</v-btn>
           </v-toolbar>
           <v-toolbar flat color="white">
             <v-flex sm12>
@@ -34,14 +34,14 @@
               </td>
               <td>{{ member.item.age }}</td>
               <td>
-                <!-- <v-btn small @click="editTour(member.item)"> -->
-                <v-icon small color="orange" @click="editTour(member.item)">edit</v-icon>
+                <!-- <v-btn small @click="editMember(member.item)"> -->
+                <v-icon small color="orange" @click="editMember(member.item)">edit</v-icon>
                 <!-- </v-btn> -->
                 <!-- <v-btn small @click="removeMember(member.item)"> -->
                 <v-icon small color="red" @click="removeMember(member.item)">delete</v-icon>
                 <!-- </v-btn>  -->
               </td>
-              <!-- <td><v-btn @click="editTour(member.item)"> Edit</v-btn></td> -->
+              <!-- <td><v-btn @click="editMember(member.item)"> Edit</v-btn></td> -->
             </template>
             <v-alert
               slot="no-results"
@@ -77,7 +77,7 @@
                 flat
                 v-if="memberSelected.$key && memberSelected.$key.length > 0"
                 :disabled="!valid"
-                @click="saveTour"
+                @click="saveMember"
               >Editar</v-btn>
               <v-btn dark flat v-else :disabled="!valid" @click="createMember">Crear</v-btn>
             </v-toolbar-items>
@@ -93,7 +93,7 @@
                 <v-layout row wrap>
                   <v-flex xs6 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.tour"
+                      v-model="memberSelected.name"
                       :rules="nameRules"
                       :counter="50"
                       label="Nombre"
@@ -103,7 +103,7 @@
                   </v-flex>
                   <v-flex xs6 sm6 md4>
                     <v-text-field
-                      v-model="memberSelected.description"
+                      v-model="memberSelected.lastname"
                       :rules="descripcionRules"
                       :counter="50"
                       label="Apellido"
@@ -481,24 +481,34 @@ export default {
       vm.image = files[0];
       vm.files = files;
     },
-    editTour(member) {
+    editMember(member) {
       var vm = this;
       console.log(tour);
       vm.memberSelected = member;
       vm.dialog = true;
     },
-    addTour() {
+    addMember() {
       var vm = this;
       vm.dialog = true;
       vm.memberSelected = {};
     },
-    saveTour() {
+    saveMember() {
       var vm = this;
-      console.log("savetour", vm.memberSelected);
+      console.log("saveMember", vm.memberSelected);
       vm.dialog = false;
     },
     createMember() {
       var vm = this;
+      var vm = this;
+      this.axios
+        .get("https://crossappback.herokuapp.com/api/members")
+        .then(response => {
+          console.log(response);
+          vm.members = response.data.members;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     },
     removeMember(member) {
       console.log(member);
@@ -527,12 +537,8 @@ export default {
     },
     getMembers() {
       var vm = this;
-      var config = {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" }
-        // crossdomain: true
-      };
       this.axios
-        .get("https://crossappback.herokuapp.com/api/members", config)
+        .get("https://crossappback.herokuapp.com/api/members")
         .then(response => {
           console.log(response);
           vm.members = response.data.members;
