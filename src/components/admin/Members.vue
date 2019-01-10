@@ -81,11 +81,11 @@
               >Editar</v-btn>
               <v-btn dark flat v-else :disabled="!valid" @click="createMember">Crear</v-btn>
             </v-toolbar-items>
-            <v-menu bottom right offset-y>
+            <!-- <v-menu bottom right offset-y>
               <v-btn slot="activator" dark icon>
                 <v-icon>more_vert</v-icon>
               </v-btn>
-            </v-menu>
+            </v-menu> -->
           </v-toolbar>
           <v-card-text>
             <v-form v-model="valid">
@@ -115,7 +115,7 @@
                     <v-dialog
                       ref="dialog"
                       v-model="modal"
-                      :return-value.sync="date"
+                      :return-value.sync="birthdate"
                       persistent
                       lazy
                       full-width
@@ -129,10 +129,10 @@
                         readonly
                         solo
                       ></v-text-field>
-                      <v-date-picker v-model="date" scrollable>
+                      <v-date-picker v-model="birthdate" scrollable>
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="modal = false">Cancelar</v-btn>
-                        <v-btn flat color="primary" @click="$refs.dialog.save(date)">Aceptar</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(birthdate)">Aceptar</v-btn>
                       </v-date-picker>
                     </v-dialog>
                   </v-flex>
@@ -196,7 +196,7 @@
                     <v-dialog
                       ref="dialog"
                       v-model="modal"
-                      :return-value.sync="date"
+                      :return-value.sync="inscriptionDate"
                       persistent
                       lazy
                       full-width
@@ -210,10 +210,10 @@
                         readonly
                         solo
                       ></v-text-field>
-                      <v-date-picker v-model="date" scrollable>
+                      <v-date-picker v-model="inscriptionDate" scrollable>
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                        <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(inscriptionDate)">OK</v-btn>
                       </v-date-picker>
                     </v-dialog>
                   </v-flex>
