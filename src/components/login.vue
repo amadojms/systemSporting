@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-layout justify-center>
+    <v-layout justify-center class="bg_login">
       <v-dialog v-model="dialog" persistent max-width="290">
         <v-card>
           <v-card-title class="headline">{{ error.code }}</v-card-title>
@@ -12,11 +12,11 @@
         </v-card>
       </v-dialog>
       <v-flex xs12 sm8 md4>
-        <div class="display-4">CrossFit.</div>
+        <div class="display-3" color="red">CrossFit.</div>
         <br>
         <v-card class="elevation-3">
           <v-toolbar flat dark color="primary">
-            <v-toolbar-title>Iniciar sesión</v-toolbar-title>
+            <v-toolbar-title>Iniciar sesion</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
@@ -42,7 +42,7 @@
               <v-progress-circular :size="25" color="primary" indeterminate></v-progress-circular>
             </div>
             <v-spacer></v-spacer>
-            <v-btn flat color="primary" @click="login">Iniciar sesión</v-btn>
+            <v-btn flat color="primary" @click="login">Iniciar sesiï¿½n</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -92,8 +92,12 @@ export default {
 };
 </script>
 <style scoped>
-body {
-  background-image: "../static/img/cross.png";
+.bg_login {
+  background-image: url("../../static/img/bg_login.jpg");
+  background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
 }
 </style>
 

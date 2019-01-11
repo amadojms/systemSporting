@@ -35,7 +35,7 @@
     </v-navigation-drawer>
     <template>
       <div>
-        <v-toolbar color="primary" dense dark flat tabs app fixed>
+        <v-toolbar color="primary" dense dark tabs app fixed>
           <v-toolbar-side-icon class="hidden-xl-only hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
           <v-toolbar-title v-text="title"></v-toolbar-title>
           <!-- <div v-text="title"></div> -->
@@ -165,7 +165,7 @@
         .then(function() {
           console.log("sesion cerrada");
           localStorage.removeItem("Uid");
-          vm.$router.push({path:'/login'});
+          vm.$router.push({path:'/'});
           vm.logout = true;
           vm.uid= "";
 
