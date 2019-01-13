@@ -27,13 +27,20 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer> -->
-    <v-toolbar color="indigo" dark dense>
+    </v-navigation-drawer>-->
+    <v-toolbar dense>
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
-      <v-toolbar-title>Configuracion</v-toolbar-title>
+      <v-toolbar-title>
+        <div class=""> <v-icon>settings</v-icon>Configuracion</div>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn v-for="(item,index) in menu" :key="index" flat @click="currentComponent = item.component">
+        <v-btn
+          v-for="(item,index) in menu"
+          :key="index"
+          flat
+          @click="currentComponent = item.component"
+        >
           {{item.title}}
           <v-icon right dark>{{item.icon}}</v-icon>
         </v-btn>
@@ -45,40 +52,30 @@
   </v-app>
 </template>
 <script>
-  import AdminTour from '@/components/admin/tour'
-  import AdminHotel from '@/components/admin/hotel'
-  import AdminPlace from '@/components/admin/place'
-  export default {
-    data: () => ({
-      drawer: null,
-      currentComponent: 'admin-tour',
-      menu: [{
-          component: "admin-tour",
-          title: "Tour",
-          icon: "directions_bus"
-        },
-        {
-          component: "admin-hotel",
-          title: "Hotel",
-          icon: "domain"
-        },
-        {
-          component: "admin-place",
-          title: "Lugares",
-          icon: "place"
-        }
-      ]
-    }),
-    components: {
-      'admin-tour': AdminTour,
-      'admin-hotel': AdminHotel,
-      'admin-place': AdminPlace,
-      // 'c-tour': () => ctour
-    },
-    props: {
-      source: String
-    },
-
+import AdminMembers from "@/components/admin/Members";
+export default {
+  data: () => ({
+    drawer: null,
+    currentComponent: "admin-members",
+    menu: [
+      // {
+      //   component: "admin-hotel",
+      //   title: "Hotel",
+      //   icon: "domain"
+      // },
+      {
+        component: "admin-members",
+        title: "Miembros",
+        icon: "group"
+      }
+    ]
+  }),
+  components: {
+    "admin-members": AdminMembers
+    // 'c-tour': () => ctour
+  },
+  props: {
+    source: String
   }
-
+};
 </script>
