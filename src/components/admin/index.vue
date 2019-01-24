@@ -52,11 +52,12 @@
   </v-app>
 </template>
 <script>
-import AdminMembers from "@/components/admin/Members";
+import ComponentMembers from "@/components/admin/Members";
+import ComponentUsers from "@/components/admin/Users";
 export default {
   data: () => ({
     drawer: null,
-    currentComponent: "admin-members",
+    currentComponent: "component-members",
     menu: [
       // {
       //   component: "admin-hotel",
@@ -64,14 +65,20 @@ export default {
       //   icon: "domain"
       // },
       {
-        component: "admin-members",
+        component: "component-members",
         title: "Miembros",
+        icon: "group"
+      },
+      {
+        component: "component-users",
+        title: "Usuarios",
         icon: "group"
       }
     ]
   }),
   components: {
-    "admin-members": AdminMembers
+    "component-members": ComponentMembers,
+    "component-users": ComponentUsers
     // 'c-tour': () => ctour
   },
   props: {

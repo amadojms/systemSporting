@@ -1,7 +1,8 @@
 <template>
   <v-app id="inspire">
-    <v-layout justify-center class="bg_login">
-      <v-dialog v-model="dialog" persistent max-width="290">
+    <v-container fluid class="bg_login">
+      <v-layout justify-center >
+      <v-dialog v-model="dialog" persistent>
         <v-card>
           <v-card-title class="headline">{{ error.code }}</v-card-title>
           <v-card-text>{{ error.message }}</v-card-text>
@@ -12,7 +13,7 @@
         </v-card>
       </v-dialog>
       <v-flex xs12 sm8 md4>
-        <div class="display-3" color="red">CrossFit.</div>
+        <div class="display-3 text-lg-center text-md-center text-xs-center ">CrossFit.</div>
         <br>
         <v-card class="elevation-3">
           <v-toolbar flat dark color="primary">
@@ -47,6 +48,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    </v-container>
   </v-app>
 </template>
 
@@ -67,9 +69,7 @@ export default {
   methods: {
     login() {
       var vm = this;
-      console.log(vm.email, vm.password, window.location);
       vm.process = true;
-
       firebase
         .auth()
         .signInWithEmailAndPassword(vm.email, vm.password)
@@ -98,6 +98,10 @@ export default {
 	background-position: center center;
 	background-size: cover;
 	background-attachment: fixed;
+}
+
+.white{
+  color: white;
 }
 </style>
 
