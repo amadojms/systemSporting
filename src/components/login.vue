@@ -13,7 +13,7 @@
         </v-card>
       </v-dialog>
       <v-flex xs12 sm8 md4>
-        <div class="display-3 text-lg-center text-md-center text-xs-center ">CrossFit.</div>
+        <div class="display-3 text-lg-center text-md-center text-xs-center ">CrossFit</div>
         <br>
         <v-card class="elevation-3">
           <v-toolbar flat dark color="primary">
