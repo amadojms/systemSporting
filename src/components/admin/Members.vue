@@ -60,6 +60,7 @@
         hide-overlay
         transition="dialog-bottom-transition"
         scrollable
+        class="bg_gray"
       >
         <v-card tile>
           <v-toolbar card dark color="primary">
@@ -67,7 +68,7 @@
               <v-icon>close</v-icon>
             </v-btn>
             <v-toolbar-title
-              v-if="memberSelected.$key && memberSelected.$key.length> 0"
+              v-if="memberSelected._id && memberSelected._id.length> 0"
             >Edita un tour</v-toolbar-title>
             <v-toolbar-title v-else>Agrega un tour</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -75,7 +76,7 @@
               <v-btn
                 dark
                 flat
-                v-if="memberSelected.$key && memberSelected.$key.length > 0"
+                v-if="memberSelected._id && memberSelected._id.length > 0"
                 :disabled="!valid"
                 @click="saveMember"
               >Editar</v-btn>
@@ -585,6 +586,10 @@ export default {
 .size {
   width: 250px;
   height: 250px;
+}
+
+.bg_gray{
+  background-color: gray;
 }
 </style>
 
