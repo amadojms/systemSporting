@@ -497,7 +497,7 @@ export default {
       var vm = this;
       console.log(vm.memberSelected);
       this.axios
-        .put("https://crossappback.herokuapp.com/api/member/", vm.memberSelected)
+        .put("https://crossappback.herokuapp.com/api/member/"+vm.memberSelected._id, vm.memberSelected)
         .then(response => {
           console.log(response);
           // vm.members = response.data.members;

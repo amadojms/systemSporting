@@ -132,7 +132,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: "Sporting system",
+        title: "Sistema deportivo",
         auth:false
       };
     },

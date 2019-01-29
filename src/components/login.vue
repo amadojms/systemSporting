@@ -15,12 +15,12 @@
       <v-flex xs12 sm8 md4>
         <div class="display-3 text-lg-center text-md-center text-xs-center ">CrossFit</div>
         <br>
-        <v-card class="elevation-3">
+        <!-- <v-card class="elevation-3">
           <v-toolbar flat dark color="primary">
             <v-toolbar-title>Iniciar sesion</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <v-card-text>
+          <v-card-text> -->
             <v-form>
               <v-text-field
                 prepend-icon="person"
@@ -28,6 +28,7 @@
                 label="Login"
                 type="text"
                 v-model="email"
+                solo
               ></v-text-field>
               <v-text-field
                 prepend-icon="lock"
@@ -35,9 +36,11 @@
                 label="Password"
                 type="password"
                 v-model="password"
+                solo
               ></v-text-field>
             </v-form>
-          </v-card-text>
+            <v-btn flat color="primary" @click="login">Iniciar sesi�n</v-btn>
+          <!-- </v-card-text>
           <v-card-actions>
             <div v-if="process" class="text-xs-center">
               <v-progress-circular :size="25" color="primary" indeterminate></v-progress-circular>
@@ -45,7 +48,7 @@
             <v-spacer></v-spacer>
             <v-btn flat color="primary" @click="login">Iniciar sesi�n</v-btn>
           </v-card-actions>
-        </v-card>
+        </v-card> -->
       </v-flex>
     </v-layout>
     </v-container>
