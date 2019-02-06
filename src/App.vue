@@ -1,5 +1,3 @@
-<style>
-</style>
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
@@ -21,7 +19,6 @@
               <v-list-tile-title>Config</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-
           <v-list-tile @click="signOut">
             <v-list-tile-action>
               <v-icon>power_settings_new</v-icon>
@@ -33,12 +30,10 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <template>
-      <div>
-        <v-toolbar color="primary" dense dark tabs app fixed>
+        <v-toolbar color="primary" fixed app dark>
+          <!-- dense dark tabs  -->
           <v-toolbar-side-icon class="hidden-xl-only hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
           <v-toolbar-title v-text="title"></v-toolbar-title>
-          <!-- <div v-text="title"></div> -->
           <v-spacer></v-spacer>
           <v-toolbar-items class="hidden-sm-and-down hidden-xs-only">
             <v-btn v-for="tab in tabs" :key="tab.url" flat :to="tab.url">
@@ -63,26 +58,15 @@
             </v-btn> -->
           </v-toolbar-items>
         </v-toolbar>
-      </div>
-    </template>
     <v-content>
-      <transition
-        name="fade"
-        mode="out-in"
-        
-      >
+      <v-container>
+        <transition name="fade" mode="out-in" >
         <router-view/>
       </transition>
+      </v-container>
     </v-content>
     <v-footer dark height="auto">
       <v-card class="flex" flat tile>
-        <!-- <v-card-title class="info">
-          <strong class="subheading">Mantente conectado con nuestras redes sociales!</strong>
-          <v-spacer></v-spacer>
-          <v-btn v-for="icon in icons" :key="icon" class="mx-3" dark icon>
-            <v-icon size="24px">{{ icon }}</v-icon>
-          </v-btn>
-        </v-card-title> -->
         <v-card-actions class="grey darken-3 justify-center">
           &copy;2018 —
           <strong> {{title}}</strong>
@@ -132,7 +116,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: "Sistema deportivo",
+        title: "CrossFit Admin",
         auth:false
       };
     },
