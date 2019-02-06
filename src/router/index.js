@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import tours from '@/components/tours'
-import hotels from '@/components/hotels'
 import detail_hotel from '@/components/detail/index'
 import login from '@/components/login'
 import contacto from '@/components/contact'
