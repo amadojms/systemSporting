@@ -39,7 +39,7 @@
                 solo
               ></v-text-field>
             </v-form>
-            <v-btn flat color="primary" @click="login">Iniciar sesi�n</v-btn>
+            <v-btn flat color="primary" @click="login">Iniciar sesion</v-btn>
           <!-- </v-card-text>
           <v-card-actions>
             <div v-if="process" class="text-xs-center">
@@ -96,7 +96,7 @@ export default {
 </script>
 <style scoped>
 .bg_login {
-  background-image: url("../../static/img/bg_login.jpg");
+  /* background-image: url("../../static/img/bg_login.jpg"); */
   background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
