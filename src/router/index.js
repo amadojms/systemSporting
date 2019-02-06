@@ -26,11 +26,6 @@ export default new Router({
       component: login
     },
     {
-      path: '/hotels',
-      // name: 'hotels',
-      component: hotels
-    },
-    {
       path: '/contacto',
       // name: 'hotels',
       component: contacto
