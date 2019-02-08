@@ -75,19 +75,27 @@
       id="notifications"
     >
       <v-list two-line dense>
-        <v-list-tile v-for="(item, index) in notifications" :key="index">
-          <v-list-tile-action avatar ripple>
-            <v-icon>{{item.icon}}</v-icon>
-          </v-list-tile-action>
+        <v-list-tile>
           <v-list-tile-content>
-            <v-list-tile-title>{{item.title}}</v-list-tile-title>
-            <v-list-tile-sub-title class="text--primary">{{ item.description }}</v-list-tile-sub-title>
+            <v-list-tile-title class="title">Notificaciones</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-divider
-              v-if="index + 1 < notifications.length"
-              :key="index"
-            ></v-divider>
+        <template v-for="(item, index) in notifications">
+          <v-list-tile :key="item.title" avatar ripple @click="toggle(index)">
+            <v-list-tile-action avatar ripple>
+              <v-icon>{{item.icon}}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>{{item.title}}</v-list-tile-title>
+              <v-list-tile-sub-title class="text--primary">{{ item.description }}</v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-list-tile-action>
+              <v-list-tile-action-text>{{ item.title }}</v-list-tile-action-text>
+              <v-icon color="grey lighten-1">eyes</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+          <v-divider v-if="index + 1 < notifications.length" :key="index"></v-divider>
+        </template>
       </v-list>
     </v-navigation-drawer>
     <v-content>
@@ -129,28 +137,19 @@ export default {
       ],
       notification_sidebar: true,
       tabs: [
-        // {
-        //   url: "/",
-        //   title: "Tours",
-        //   icon: "directions_bus"
-        // },
-        // {
-        //   url: "/hotels",
-        //   title: "Hotels",
-        //   icon: "domain"
-        // },
-        // {
-        //   url: "/contacto",
-        //   title: "Contacto",
-        //   icon: "person"
-        // },
       ],
-      notifications:[
+      notifications: [
         {
           // priority:"pay",
           icon: "payment",
-          title:"Pago",
-          description:"Pago de Miguel Martin vence en 5 diás",
+          title: "Pago",
+          description: "Pago de Miguel Martin vence en 5 diás"
+        },
+        {
+          // priority:"pay",
+          icon: "payment",
+          title: "Pago2",
+          description: "Pago de Miguel Martin vence en 5 diás"
         }
       ],
       miniVariant: false,
