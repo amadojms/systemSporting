@@ -74,15 +74,20 @@
       v-model="notification_sidebar"
       id="notifications"
     >
-      <v-list dense>
-        <v-list-tile v-for="(tab, index) in tabs" :key="index" :to="tab.url">
-          <v-list-tile-action>
-            <v-icon>{{tab.icon}}</v-icon>
+      <v-list two-line dense>
+        <v-list-tile v-for="(item, index) in notifications" :key="index">
+          <v-list-tile-action avatar ripple>
+            <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{tab.title}}</v-list-tile-title>
+            <v-list-tile-title>{{item.title}}</v-list-tile-title>
+            <v-list-tile-sub-title class="text--primary">{{ item.description }}</v-list-tile-sub-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-divider
+              v-if="index + 1 < notifications.length"
+              :key="index"
+            ></v-divider>
       </v-list>
     </v-navigation-drawer>
     <v-content>
@@ -139,6 +144,14 @@ export default {
         //   title: "Contacto",
         //   icon: "person"
         // },
+      ],
+      notifications:[
+        {
+          // priority:"pay",
+          icon: "payment",
+          title:"Pago",
+          description:"Pago de Miguel Martin vence en 5 diás",
+        }
       ],
       miniVariant: false,
       right: true,
