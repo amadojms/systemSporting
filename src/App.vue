@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" fixed app>
+    <v-navigation-drawer v-model="drawer" fixed app id="menu">
       <v-list dense>
         <v-list-tile v-for="(tab, index) in tabs" :key="index" :to="tab.url">
           <v-list-tile-action>
@@ -30,7 +30,7 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="primary" fixed app dark>
+    <v-toolbar color="green" fixed app dark height="50">
       <!-- dense dark tabs  -->
       <v-toolbar-side-icon class="hidden-xl-only hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
@@ -49,6 +49,14 @@
             <!-- <div class="font-weight-thin">Logout</div> -->
             <v-icon dark>power_settings_new</v-icon>
           </v-btn>
+          <v-btn @click="notification_sidebar = true" flat>
+            <!-- <div class="font-weight-thin">Logout</div> -->
+            <!-- <v-icon dark>notifications</v-icon> -->
+            <v-badge color="red">
+              <span slot="badge">6</span>
+              <v-icon>notifications</v-icon>
+            </v-badge>
+          </v-btn>
         </template>
         <!-- <v-btn  flat @click="changeLang('en')">
               <img width="30" height="30" src="/static/img/united-states.png" alt="Cambia a ingles">
@@ -58,6 +66,25 @@
         </v-btn>-->
       </v-toolbar-items>
     </v-toolbar>
+    <v-navigation-drawer
+      right
+      fixed
+      temporary
+      floating
+      v-model="notification_sidebar"
+      id="notifications"
+    >
+      <v-list dense>
+        <v-list-tile v-for="(tab, index) in tabs" :key="index" :to="tab.url">
+          <v-list-tile-action>
+            <v-icon>{{tab.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{tab.title}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
     <v-content>
       <v-container fluid>
         <transition name="fade" mode="out-in">
@@ -69,7 +96,7 @@
       <v-card class="flex" flat tile>
         <v-card-actions class="grey darken-3 justify-center">
           &copy;{{year}} —
-          <strong> {{title}}</strong>
+          <strong>{{title}}</strong>
         </v-card-actions>
       </v-card>
     </v-footer>
@@ -95,6 +122,7 @@ export default {
         "fab fa-linkedin",
         "fab fa-instagram"
       ],
+      notification_sidebar: true,
       tabs: [
         // {
         //   url: "/",
