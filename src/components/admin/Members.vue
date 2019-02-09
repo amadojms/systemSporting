@@ -1,5 +1,4 @@
 <template>
-  <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 sm12 md12>
         <v-card>
@@ -52,8 +51,6 @@
           </v-data-table>
         </v-card>
       </v-flex>
-    </v-layout>
-    <v-layout row>
       <v-dialog
         v-model="dialog"
         fullscreen
@@ -63,7 +60,7 @@
         class="bg_gray"
       >
         <v-card tile>
-          <v-toolbar card dark color="primary">
+          <v-toolbar card dark height="50">
             <v-btn icon dark @click.native="dialog = false">
               <v-icon>close</v-icon>
             </v-btn>
@@ -328,7 +325,6 @@
         </v-card>
       </v-dialog>
     </v-layout>
-  </v-container>
 </template>
 <script>
 import firebase from "firebase";
