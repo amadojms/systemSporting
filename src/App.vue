@@ -96,16 +96,16 @@ export default {
         "fab fa-instagram"
       ],
       tabs: [
-        // {
-        //   url: "/",
-        //   title: "Tours",
-        //   icon: "directions_bus"
-        // },
-        // {
-        //   url: "/hotels",
-        //   title: "Hotels",
-        //   icon: "domain"
-        // },
+        {
+          url: "/members",
+          title: "Miembros",
+          icon: "directions_bus"
+        },
+        {
+          url: "/users",
+          title: "Usuarios",
+          icon: "directions_bus"
+        },
         // {
         //   url: "/contacto",
         //   title: "Contacto",
