@@ -3,7 +3,7 @@
     <v-flex xs12 sm12 md12>
       <v-flex sm8>
         <h3 class="display-1">Miembros</h3>
-        <small>Administra a los miembros de tu empresa</small>
+        <small>Administra a los miembros, agrega, edita o elimina.</small>
       </v-flex>
       <v-flex sm4>
         <v-text-field v-model="search" append-icon="search" label="Buscar" class="flex"></v-text-field>
@@ -84,11 +84,6 @@
             >Editar</v-btn>
             <v-btn dark flat v-else :disabled="!valid" @click="createMember">Crear</v-btn>
           </v-toolbar-items>
-          <!-- <v-menu bottom right offset-y>
-              <v-btn slot="activator" dark icon>
-                <v-icon>more_vert</v-icon>
-              </v-btn>
-          </v-menu>-->
         </v-toolbar>
         <v-card-text>
           <v-form v-model="valid">
@@ -282,57 +277,15 @@
                 </v-flex>
               </v-layout>
             </v-container>
-            <!-- <v-select
-                :items="places"
-                v-model="memberSelected.placeid"
-                item-value="$key"
-                item-text="place"
-                label="Selecciona lugar"
-                single-line
-            ></v-select>-->
-            <!-- <v-flex class="text-md-center">
-                <img
-                  class="size"
-                  :src="memberSelected.image && memberSelected.image.length > 0 ? memberSelected.image : '/static/img/producto_sin_imagen.png'"
-                  alt="Foto subida"
-                >
-              </v-flex>
-              <v-flex class="text-md-center">
-                <v-btn raised class="primary text-md-center" @click="inputFileClick">Subir imagen</v-btn>
-                <input
-                  class="hide"
-                  type="file"
-                  ref="inputFile"
-                  accept="image/*"
-                  @change="fileChange"
-                >
-              </v-flex>
-              <v-flex>
-                <p>Contenido en español</p>
-                <quill-editor
-                  v-model="memberSelected.content"
-                  ref="myQuillEditor"
-                  :options="editorOption"
-                  @blur="onEditorBlur($event)"
-                  @focus="onEditorFocus($event)"
-                  @ready="onEditorReady($event)"
-                ></quill-editor>
-              </v-flex>
-              <v-flex>
-                <p>Contenido en ingles</p>
-                <quill-editor
-                  v-model="memberSelected.content_en"
-                  ref="myQuillEditor"
-                  :options="editorOption"
-                  @blur="onEditorBlur($event)"
-                  @focus="onEditorFocus($event)"
-                  @ready="onEditorReady($event)"
-                ></quill-editor>
-            </v-flex>-->
           </v-form>
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-fab-transition>
+      <v-btn  fab small fixed bottom right color="primary">
+        <v-icon>add</v-icon>
+      </v-btn>
+    </v-fab-transition>
   </v-layout>
 </template>
 <script>
@@ -347,20 +300,12 @@ export default {
       birthdate: new Date().toISOString().substr(0, 10),
       inscriptionDate: new Date().toISOString().substr(0, 10),
       modal: false,
-      //   tours: [],
-      //   places: [],
       //   files: Object,
       //   fb: firebase.database(),
       members: [],
       memberSelected: {},
-      nameRules: [
-        // v => !!v || "Nombre es requerido",
-        // v => v.length <= 50 || "No debe ser mayor a 50 caracteres"
-      ],
-      descripcionRules: [
-        // v => !!v || "Descripcion es requerido",
-        // v => v.length <= 50 || "No debe ser mayor a 50 caracteres"
-      ],
+      nameRules: [],
+      descripcionRules: [],
       incluyeRules: [
         // v => !!v || "Incluye es requerido",
         // v => v.length <= 50 || "No debe ser mayor a 50 caracteres"
@@ -602,6 +547,14 @@ export default {
 
 .bg_gray {
   background-color: gray;
+}
+/* This is for documentation purposes and will not be needed in your application */
+#lateral .v-speed-dial,
+#lateral .v-btn--floating {
+  position: absolute;
+}
+#lateral .v-btn--floating {
+  margin: 0 0 16px 16px;
 }
 </style>
 

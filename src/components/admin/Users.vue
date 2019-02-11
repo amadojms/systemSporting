@@ -1,141 +1,122 @@
 <template>
-  <v-container fluid>
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md12>
-        <v-card>
-          <v-toolbar flat color="white">
-            <v-toolbar-title>
-              <h3 class="display-1">Usuarios</h3>
-            </v-toolbar-title>
-            <v-divider class="mx-3" inset vertical></v-divider>
-            <div class="subheading">Administra tus usuarios</div>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" small dark @click="addUser">Agregar</v-btn>
-          </v-toolbar>
-          <v-toolbar flat color="white">
-            <v-flex sm12>
-              <v-text-field v-model="search" append-icon="search" label="Buscar" class="flex"></v-text-field>
-            </v-flex>
-          </v-toolbar>
-          <v-data-table :headers="usersConfig" :items="users" :search="search">
-            <template slot="items" slot-scope="user">
-              <td>{{ user.item.name }}</td>
-              <td>{{ user.item.lastname}}</td>
-              <td>{{ user.item.birthdate }}</td>
-              <td>{{ user.item.cellphone }}</td>
-              <td>
-                <v-chip
-                  :color="user.item.status ? 'green' : 'red'"
-                  text-color="white"
-                >{{user.item.status ? 'Activo': 'Inactivo'}}</v-chip>
-              </td>
-              <td>
-                <img :src="user.item.picture" width="25" height="25">
-              </td>
-              <td>{{ user.item.age }}</td>
-              <td>
-                <!-- <v-btn small @click="edituser(user.item)"> -->
-                <v-icon small color="orange" @click="edituser(user.item)">edit</v-icon>
-                <!-- </v-btn> -->
-                <!-- <v-btn small @click="removeuser(user.item)"> -->
-                <v-icon small color="red" @click="removeuser(user.item)">delete</v-icon>
-                <!-- </v-btn>  -->
-              </td>
-              <!-- <td><v-btn @click="edituser(user.item)"> Edit</v-btn></td> -->
-            </template>
-            <v-alert
-              slot="no-results"
-              :value="true"
-              color="error"
-              icon="warning"
-            >Tu busqueda "{{ search }}", no encontro ningun resultado.</v-alert>
-          </v-data-table>
-        </v-card>
+  <v-layout row wrap>
+    <v-flex xs12 sm12 md12>
+      <v-flex sm8>
+        <h3 class="display-1">Usuarios</h3>
+        <small>Administra los usuarios, agrega, edita o elimina</small>
       </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-dialog
-        v-model="dialog"
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-        scrollable
-      >
-        <v-card tile>
-          <v-toolbar card dark color="primary">
-            <v-btn icon dark @click.native="dialog = false">
-              <v-icon>close</v-icon>
-            </v-btn>
-            <v-toolbar-title
-              v-if="userSelected.$key && userSelected.$key.length> 0"
-            >Edita un tour</v-toolbar-title>
-            <v-toolbar-title v-else>Agrega un tour</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-items>
-              <v-btn
-                dark
-                flat
-                v-if="userSelected.$key && userSelected.$key.length > 0"
-                :disabled="!valid"
-                @click="saveUser"
-              >Editar</v-btn>
-              <v-btn dark flat v-else :disabled="!valid" @click="createUser">Crear</v-btn>
-            </v-toolbar-items>
-            <!-- <v-menu bottom right offset-y>
+      <v-flex sm4>
+        <v-text-field v-model="search" append-icon="search" label="Buscar" class="flex"></v-text-field>
+      </v-flex>
+      <v-card>
+        <v-data-table :headers="usersConfig" :items="users" :search="search">
+          <template slot="items" slot-scope="user">
+            <td>{{ user.item.name }}</td>
+            <td>{{ user.item.lastname}}</td>
+            <td>{{ user.item.birthdate }}</td>
+            <td>{{ user.item.cellphone }}</td>
+            <td>
+              <v-chip
+                :color="user.item.status ? 'green' : 'red'"
+                text-color="white"
+              >{{user.item.status ? 'Activo': 'Inactivo'}}</v-chip>
+            </td>
+            <td>
+              <img :src="user.item.picture" width="25" height="25">
+            </td>
+            <td>{{ user.item.age }}</td>
+            <td>
+              <!-- <v-btn small @click="edituser(user.item)"> -->
+              <v-icon small color="orange" @click="edituser(user.item)">edit</v-icon>
+              <!-- </v-btn> -->
+              <!-- <v-btn small @click="removeuser(user.item)"> -->
+              <v-icon small color="red" @click="removeuser(user.item)">delete</v-icon>
+              <!-- </v-btn>  -->
+            </td>
+            <!-- <td><v-btn @click="edituser(user.item)"> Edit</v-btn></td> -->
+          </template>
+          <v-alert
+            slot="no-results"
+            :value="true"
+            color="error"
+            icon="warning"
+          >Tu busqueda "{{ search }}", no encontro ningun resultado.</v-alert>
+        </v-data-table>
+      </v-card>
+    </v-flex>
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+      scrollable
+    >
+      <v-card tile>
+        <v-toolbar card dark color="primary">
+          <v-btn icon dark @click.native="dialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title v-if="userSelected.$key && userSelected.$key.length> 0">Edita un tour</v-toolbar-title>
+          <v-toolbar-title v-else>Agrega un tour</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn
+              dark
+              flat
+              v-if="userSelected.$key && userSelected.$key.length > 0"
+              :disabled="!valid"
+              @click="saveUser"
+            >Editar</v-btn>
+            <v-btn dark flat v-else :disabled="!valid" @click="createUser">Crear</v-btn>
+          </v-toolbar-items>
+          <!-- <v-menu bottom right offset-y>
               <v-btn slot="activator" dark icon>
                 <v-icon>more_vert</v-icon>
               </v-btn>
-            </v-menu> -->
-          </v-toolbar>
-          <v-card-text>
-            <v-form v-model="valid">
-              <v-container fluid>
-                <v-layout row wrap>
-                  <v-flex xs6 sm6 md4>
-                    <v-text-field
-                      v-model="userSelected.name"
-                      :rules="nameRules"
-                      :counter="50"
-                      label="Nombre"
-                      required
-                      solo
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs6 sm6 md4>
-                    <v-text-field
-                      v-model="userSelected.role"
-                      :counter="50"
-                      label="Rol"
-                      required
-                      solo
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs6 sm6 md4>
-                    <v-text-field
-                      v-model="userSelected.username"
-                      label="Usuario"
-                      required
-                      solo
-                      append-icon="mail"
-                    ></v-text-field>
-                  </v-flex>
-                  <v-flex xs6 sm6 md4>
-                    <v-text-field
-                      v-model="userSelected.status"
-                      label="Status"
-                      required
-                      solo
-                      append-icon="mail"
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
-    </v-layout>
-  </v-container>
+          </v-menu>-->
+        </v-toolbar>
+        <v-card-text>
+          <v-form v-model="valid">
+            <v-container fluid>
+              <v-layout row wrap>
+                <v-flex xs6 sm6 md4>
+                  <v-text-field
+                    v-model="userSelected.name"
+                    :rules="nameRules"
+                    :counter="50"
+                    label="Nombre"
+                    required
+                    solo
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs6 sm6 md4>
+                  <v-text-field v-model="userSelected.role" :counter="50" label="Rol" required solo></v-text-field>
+                </v-flex>
+                <v-flex xs6 sm6 md4>
+                  <v-text-field
+                    v-model="userSelected.username"
+                    label="Usuario"
+                    required
+                    solo
+                    append-icon="mail"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs6 sm6 md4>
+                  <v-text-field
+                    v-model="userSelected.status"
+                    label="Status"
+                    required
+                    solo
+                    append-icon="mail"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </v-layout>
 </template>
 <script>
 import firebase from "firebase";
@@ -198,8 +179,7 @@ export default {
       }
     };
   },
-  computed: {
-  },
+  computed: {},
   props: {
     source: String
   },
@@ -268,7 +248,7 @@ export default {
         .catch(e => {
           console.log(e);
         });
-    },
+    }
   },
   mounted() {
     var vm = this;

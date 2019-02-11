@@ -11,14 +11,6 @@
           </v-list-tile-content>
         </v-list-tile>
         <template v-if="auth">
-          <!-- <v-list-tile to="/admin">
-            <v-list-tile-action>
-              <v-icon>settings</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Config</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile> -->
           <v-list-tile @click="signOut">
             <v-list-tile-action>
               <v-icon>power_settings_new</v-icon>
@@ -43,26 +35,19 @@
         <template v-if="auth">
           <!-- <v-btn flat to="/admin">
             <v-icon dark>settings</v-icon>
-          </v-btn> -->
+          </v-btn>-->
           <v-btn @click="signOut" flat>
-            <!-- <div class="font-weight-thin">Logout</div> -->
             <v-icon dark>power_settings_new</v-icon>
           </v-btn>
-          <v-btn @click="notification_sidebar = true" flat>
-            <!-- <div class="font-weight-thin">Logout</div> -->
-            <!-- <v-icon dark>notifications</v-icon> -->
-            <v-badge color="red">
-              <span slot="badge">6</span>
-              <v-icon>notifications</v-icon>
-            </v-badge>
-          </v-btn>
         </template>
-        <!-- <v-btn  flat @click="changeLang('en')">
-              <img width="30" height="30" src="/static/img/united-states.png" alt="Cambia a ingles">
-            </v-btn>
-            <v-btn  flat @click="changeLang('es')">
-              <img width="30" height="30" src="/static/img/mexico.png" alt="Cambia a espa�ol">
-        </v-btn>-->
+      </v-toolbar-items>
+      <v-toolbar-items>
+        <v-btn @click="notification_sidebar = true" flat>
+          <v-badge color="red">
+            <span slot="badge">6</span>
+            <v-icon>notifications</v-icon>
+          </v-badge>
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-navigation-drawer
@@ -98,7 +83,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-content>
-      <v-container fluid>
+      <v-container fluid fill-height>
         <transition name="fade" mode="out-in">
           <router-view/>
         </transition>
@@ -145,7 +130,7 @@ export default {
           url: "/users",
           title: "Usuarios",
           icon: "supervised_user_circle"
-        },
+        }
         // {
         //   url: "/contacto",
         //   title: "Contacto",

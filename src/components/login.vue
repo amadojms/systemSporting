@@ -1,7 +1,7 @@
 <template >
   <!-- <v-app id="inspire"> -->
     <!-- <v-container fluid class="bg_login"> -->
-      <v-layout justify-center>
+      <v-layout align-center justify-center >
         <v-dialog v-model="dialog" persistent>
           <v-card>
             <v-card-title class="headline">{{ error.code }}</v-card-title>
@@ -39,7 +39,10 @@
               solo
             ></v-text-field>
           </v-form>
-          <v-btn flat color="primary" @click="login">Iniciar sesion</v-btn>
+          <div class="text-lg-center text-md-center text-xs-center">
+            
+            <v-btn color="primary" @click="login">Iniciar sesion</v-btn>
+            </div>
           <!-- </v-card-text>
           <v-card-actions>
             <div v-if="process" class="text-xs-center">
