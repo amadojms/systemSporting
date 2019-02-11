@@ -11,14 +11,14 @@
           </v-list-tile-content>
         </v-list-tile>
         <template v-if="auth">
-          <v-list-tile to="/admin">
+          <!-- <v-list-tile to="/admin">
             <v-list-tile-action>
               <v-icon>settings</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>Config</v-list-tile-title>
             </v-list-tile-content>
-          </v-list-tile>
+          </v-list-tile> -->
           <v-list-tile @click="signOut">
             <v-list-tile-action>
               <v-icon>power_settings_new</v-icon>
@@ -30,7 +30,7 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="green" fixed app dark height="50">
+    <v-toolbar color="gray" fixed app dark height="50">
       <!-- dense dark tabs  -->
       <v-toolbar-side-icon class="hidden-xl-only hidden-md-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
@@ -41,10 +41,9 @@
           <v-icon right dark>{{tab.icon}}</v-icon>
         </v-btn>
         <template v-if="auth">
-          <v-btn flat to="/admin">
-            <!-- <div class="font-weight-thin">Config</div> -->
+          <!-- <v-btn flat to="/admin">
             <v-icon dark>settings</v-icon>
-          </v-btn>
+          </v-btn> -->
           <v-btn @click="signOut" flat>
             <!-- <div class="font-weight-thin">Logout</div> -->
             <v-icon dark>power_settings_new</v-icon>
@@ -90,7 +89,7 @@
               <v-list-tile-sub-title class="text--primary">{{ item.description }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-list-tile-action-text>{{ item.title }}</v-list-tile-action-text>
+              <v-list-tile-action-text>{{ item.date }}</v-list-tile-action-text>
               <v-icon color="grey lighten-1">eyes</v-icon>
             </v-list-tile-action>
           </v-list-tile>
@@ -140,12 +139,12 @@ export default {
         {
           url: "/members",
           title: "Miembros",
-          icon: "directions_bus"
+          icon: "group_work"
         },
         {
           url: "/users",
           title: "Usuarios",
-          icon: "directions_bus"
+          icon: "supervised_user_circle"
         },
         // {
         //   url: "/contacto",
@@ -158,12 +157,14 @@ export default {
           // priority:"pay",
           icon: "payment",
           title: "Pago",
+          date: "Hoy",
           description: "Pago de Miguel Martin vence en 5 di�s"
         },
         {
           // priority:"pay",
           icon: "payment",
           title: "Pago2",
+          date: "Ayer",
           description: "Pago de Miguel Martin vence en 5 di�s"
         }
       ],

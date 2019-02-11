@@ -2,7 +2,8 @@
   <v-layout row wrap>
     <v-flex xs12 sm12 md12>
       <v-flex sm8>
-        <h3 c                                                                                                                                                                                                                                                                         zzzzzzzzzzzzzzzzzzzzzzzzzzzzz>Miembros<small>Administra a los miembros de tu empresa</small></h3>
+        <h3 class="display-1">Miembros</h3>
+        <small>Administra a los miembros de tu empresa</small>
       </v-flex>
       <v-flex sm4>
         <v-text-field v-model="search" append-icon="search" label="Buscar" class="flex"></v-text-field>
