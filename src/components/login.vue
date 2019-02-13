@@ -85,7 +85,7 @@ export default {
           localStorage.setItem("User", JSON.stringify(firebaseUser.user));
           localStorage.setItem("Uid", firebaseUser.user.uid);
           // window.location = '/admin';
-          vm.$router.push({ path: "/admin" });
+          vm.$router.push({ path: "/members" });
         })
         .catch(function(error) {
           vm.process = false;
