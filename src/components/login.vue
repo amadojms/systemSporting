@@ -1,42 +1,49 @@
-<template>
-  <v-app id="inspire">
-    <v-layout justify-center class="bg_login">
-      <v-dialog v-model="dialog" persistent max-width="290">
-        <v-card>
-          <v-card-title class="headline">{{ error.code }}</v-card-title>
-          <v-card-text>{{ error.message }}</v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="red darken-1" flat @click.native="dialog = false">Cerrar</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-      <v-flex xs12 sm8 md4>
-        <div class="display-3" color="red">CrossFit.</div>
-        <br>
-        <v-card class="elevation-3">
+<template >
+  <!-- <v-app id="inspire"> -->
+    <!-- <v-container fluid class="bg_login"> -->
+      <v-layout align-center justify-center >
+        <v-dialog v-model="dialog" persistent>
+          <v-card>
+            <v-card-title class="headline">{{ error.code }}</v-card-title>
+            <v-card-text>{{ error.message }}</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="red darken-1" flat @click.native="dialog = false">Cerrar</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-flex xs12 sm8 md4>
+          <div class="display-3 text-lg-center text-md-center text-xs-center">CrossFit</div>
+          <br>
+          <!-- <v-card class="elevation-3">
           <v-toolbar flat dark color="primary">
             <v-toolbar-title>Iniciar sesion</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
-          <v-card-text>
-            <v-form>
-              <v-text-field
-                prepend-icon="person"
-                name="login"
-                label="Login"
-                type="text"
-                v-model="email"
-              ></v-text-field>
-              <v-text-field
-                prepend-icon="lock"
-                name="password"
-                label="Password"
-                type="password"
-                v-model="password"
-              ></v-text-field>
-            </v-form>
-          </v-card-text>
+          <v-card-text>-->
+          <v-form>
+            <v-text-field
+              prepend-icon="person"
+              name="login"
+              label="Login"
+              type="text"
+              v-model="email"
+              solo
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="lock"
+              name="password"
+              label="Password"
+              type="password"
+              v-model="password"
+              solo
+            ></v-text-field>
+          </v-form>
+          <div class="text-lg-center text-md-center text-xs-center">
+            
+            <v-btn color="primary" @click="login">Iniciar sesion</v-btn>
+            </div>
+          <!-- </v-card-text>
           <v-card-actions>
             <div v-if="process" class="text-xs-center">
               <v-progress-circular :size="25" color="primary" indeterminate></v-progress-circular>
@@ -44,10 +51,11 @@
             <v-spacer></v-spacer>
             <v-btn flat color="primary" @click="login">Iniciar sesi�n</v-btn>
           </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-app>
+          </v-card>-->
+        </v-flex>
+      </v-layout>
+    <!-- </v-container> -->
+  <!-- </v-app> -->
 </template>
 
 <script>
@@ -67,9 +75,7 @@ export default {
   methods: {
     login() {
       var vm = this;
-      console.log(vm.email, vm.password, window.location);
       vm.process = true;
-
       firebase
         .auth()
         .signInWithEmailAndPassword(vm.email, vm.password)
@@ -79,7 +85,7 @@ export default {
           localStorage.setItem("User", JSON.stringify(firebaseUser.user));
           localStorage.setItem("Uid", firebaseUser.user.uid);
           // window.location = '/admin';
-          vm.$router.push({ path: "/admin" });
+          vm.$router.push({ path: "/members" });
         })
         .catch(function(error) {
           vm.process = false;
@@ -95,9 +101,13 @@ export default {
 .bg_login {
   background-image: url("../../static/img/bg_login.jpg");
   background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-	background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.white {
+  color: white;
 }
 </style>
 
